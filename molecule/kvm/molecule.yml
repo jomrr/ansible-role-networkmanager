@@ -1,0 +1,48 @@
+---
+# role: ansible-role-networkmanager
+# file: molecule/kvm/molecule.yml
+
+dependency:
+  name: galaxy
+  options:
+    role-file: requirements.yml
+driver:
+  name: vagrant
+  provider:
+    name: libvirt
+    type: libvirt
+    options:
+      memory: 2048
+      cpus: 2
+lint: |
+  set -e
+  yamllint .
+  ansible-lint
+platforms:
+  - name: arch-networkmanager
+    box: "archlinux/archlinux"
+  - name: centos-networkmanager
+    box: "centos/8"
+  - name: debian-networkmanager
+    box: "debian/bullseye64"
+  - name: fedora-networkmanager
+    box: "fedora/33-cloud-base"
+  - name: opensuse-networkmanager
+    box: "generic/opensuse15"
+  - name: oracle-networkmanager
+    box: "generic/oracle8"
+  - name: ubuntu-networkmanager
+    box: "generic/ubuntu2004"
+provisioner:
+  name: ansible
+  log: true
+  playbooks:
+    prepare: ../resources/playbooks/prepare.yml
+    converge: ../resources/playbooks/converge.yml
+    verify: ../resources/playbooks/verify.yml
+  inventory:
+    group_vars:
+      all:
+        networkmanager_role_enabled: true
+verifier:
+  name: ansible

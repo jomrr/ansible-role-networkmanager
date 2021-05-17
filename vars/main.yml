@@ -1,0 +1,32 @@
+---
+# role: ansible-role-networkmanager
+# file: vars/main.yml
+
+# packages to install for NetworkManager
+_networkmanager_packages:
+  default:
+    - NetworkManager
+  Alpine:
+    - networkmanager
+  Archlinux:
+    - networkmanager
+  Debian:
+    - network-manager
+
+networkmanager_packages: >
+  {{ _networkmanager_packages[ansible_distribution]
+  if    _networkmanager_packages[ansible_distribution] is defined
+  else  _networkmanager_packages[ansible_os_family]
+  if    _networkmanager_packages[ansible_os_family] is defined
+  else  _networkmanager_packages['default'] }}
+
+_networkmanager_service:
+  default: "systemctl start NetworkManager"
+  Alpine: "service networkmanager start"
+
+networkmanager_service: >
+  {{ _networkmanager_service[ansible_distribution]
+  if    _networkmanager_service[ansible_distribution] is defined
+  else  _networkmanager_service[ansible_os_family]
+  if    _networkmanager_service[ansible_os_family] is defined
+  else  _networkmanager_service['default'] }}
