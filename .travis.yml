@@ -1,31 +1,21 @@
 ---
-# role: ansible-role-skeleton
+# role: ansible-role-networkmanager
 # file: .travis.yml
 
 language: python
 
-python:
-  - "3.9"
-
-services: docker
+os: linux
+dist: focal
 
 branches:
   only:
     - main
 
-cache:
-  pip: true
-
 before_install:
   - python -m pip install --upgrade pip
 
 install:
-  - pip install ansible tox-travis molecule
-  - pip install -r requirements.txt
+  - pip install ansible yamllint ansible-lint
 
 script:
-  - cd ..
-  - ansible-galaxy role init --role-skeleton=ansible-role-skeleton ansible-role-test
-  - cd ansible-role-test
-  - git init && git add .
-  - molecule lint
+  - ansible-lint
