@@ -4,13 +4,13 @@
 
 galaxy_info:
   role_name: networkmanager
-  author: jam82
+  author: jomrr
   description: Ansible role for setting up networkmanager.
   company: ''
 
   # If the issue tracker for your role is not on github, uncomment the
   # next line and provide a value
-  issue_tracker_url: https://github.com/jam82/ansible-role-networkmanager/issues
+  issue_tracker_url: https://github.com/jomrr/ansible-role-networkmanager/issues
 
   license: MIT
 

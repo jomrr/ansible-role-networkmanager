@@ -7,7 +7,7 @@ dependency:
   options:
     role-file: requirements.yml
 driver:
-  name: jam82
+  name: jomrr
   provider:
     name: vb
     type: virtualbox
