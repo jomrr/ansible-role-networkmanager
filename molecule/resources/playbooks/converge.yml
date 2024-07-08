@@ -1,9 +1,10 @@
----
-# role: ansible-role-networkmanager
+# role: jomrr.networkmanager
 # file: molecule/resources/playbooks/converge.yml
+# code: language=ansible-jinja
 
-- name: Converge
+- name: "PLAYBOOK | Converge | networkmanager"
   hosts: all
   become: true
+  gather_facts: true
   roles:
-    - role: '../ansible-role-networkmanager'
+    - role: "{{ lookup('ansible.builtin.env', 'MOLECULE_PROJECT_DIRECTORY') }}"

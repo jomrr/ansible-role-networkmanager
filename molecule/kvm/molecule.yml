@@ -1,5 +1,5 @@
 ---
-# role: ansible-role-networkmanager
+# role: jomrr.networkmanager
 # file: molecule/kvm/molecule.yml
 
 dependency:
